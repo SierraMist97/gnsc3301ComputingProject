@@ -8,7 +8,7 @@ output: html_document
 
 
 
-Abi's Section
+Abi's Section 
 
 My goal is to use a photoresistor (from the Elegoo Electronics Fun Kit) to record light and the time that elapses when there is light versus no light. This was to be used in a greenhuose to measure the amount of light in a day to compare with heat to see if tehre was a correlation with plant growth. However, the code is all I am able to work with in the current COVID-19 quarantine. 
 
@@ -68,3 +68,4 @@ rownames(resources) <- c("Photoresistor Code:","More on Photoresistors:","Timing
 resources <- as.table(resources)
 resources
 ```
+Smiley Face for Fun :)
