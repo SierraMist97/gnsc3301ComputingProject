@@ -10,7 +10,7 @@ output: html_document
 
 Abi's Section
 
-Photoresistor to record light and teh time that elapses when there is light versus no light. This was to be used in a greenhuose to measure teh amount of light in a day to compare with heat to see if tehre was a correlation with plant growth. 
+My goal is to use a photoresistor (from the Elegoo Electronics Fun Kit) to record light and the time that elapses when there is light versus no light. This was to be used in a greenhuose to measure the amount of light in a day to compare with heat to see if tehre was a correlation with plant growth. However, the code is all I am able to work with in the current COVID-19 quarantine. 
 
 ```{r}
 #photoresistor code from www.elegoo.com 
@@ -46,7 +46,16 @@ void loop()
   updateShiftRegister();
 }
 
-#this code is in the works and needs to be tested with the Elegoo Photoresistor before alterations. It may only be compatible with a Raspberry Pi or Arduino set up
+#this code is in the works and needs to be tested with the Elegoo Photoresistor before alterations. It may only be compatible with a Raspberry Pi or Arduino set up.
+#I need to test and perform more research before this code will be satisfactory.
+```
+
+Preliminary Timing Code for Photoresistor
+```{r}
+start_time = Sys.time()
+#NEED TO DEVELOP 'dark' INTO PHOTORESISTOR CODE
+Sys.sleep(dark=TRUE)
+end_time = Sys.time()
 ```
 
 Abi's Resources
