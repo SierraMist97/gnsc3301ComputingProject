@@ -8,7 +8,7 @@ output: html_document
 
 
 
-Abi's Section 
+Abi's Section
 
 My goal is to use a photoresistor (from the Elegoo Electronics Fun Kit) to record light and the time that elapses when there is light versus no light. This was to be used in a greenhuose to measure the amount of light in a day to compare with heat to see if tehre was a correlation with plant growth. However, the code is all I am able to work with in the current COVID-19 quarantine. 
 
@@ -62,10 +62,44 @@ Abi's Resources
 ```{r}
 #resources
 
-resources <- matrix(c("https://www.elegoo.com/download/","https://startingelectronics.org/tutorials/arduino/modules/photo-resistor/","https://www.r-bloggers.com/timing-in-r/","https://www.cyclismo.org/tutorial/R/tables.html","TA0010 Arduino Uno Projects.pdf"),ncol=1,byrow=TRUE)
+resources <- matrix(c("https://www.elegoo.com/download/","https://startingelectronics.org/tutorials/arduino/modules/photo-resistor/","https://www.r-bloggers.com/timing-in-r/","https://www.cyclismo.org/tutorial/R/tables.html"),ncol=1,byrow=TRUE)
 colnames(resources) <- c("Source")
-rownames(resources) <- c("Photoresistor Code:","More on Photoresistors:","Timing Coding:","Table Code:","Arduino Resource:")
+rownames(resources) <- c("Photoresistor Code:","More on Photoresistors:","Timing Coding:","Table Code:")
 resources <- as.table(resources)
 resources
 ```
-Smiley Face for Fun :)
+
+Saydi's Section
+
+Goal: I want to gather temperature data using a temperature sensor from the ELEGOO Electronics Fun Kit. I'm still figuring out how often I want it to take a reading. 
+
+
+//----Begin Code (copy from here)----
+//Variables:
+int varPin = A0; //A0 is the analog in pin
+int val = 0; //This will store the current value from the sensor
+int oldVal = 0; //This will store the last value from the sensor to compare.
+void setup() {
+ // put your setup code here, to run once:
+Serial.begin(9600);
+Serial.println("Serial connection established..\nTemperature logging started!");
+}
+void loop() {
+ // put your main code here, to run repeatedly:
+oldVal = val; //Store the last value in the variable
+val = analogRead(varPin); //Store the new value in its variable
+if (oldVal != val) //If the temperature has changed, tell us the new temp
+{
+Serial.print("Temp: ");
+Serial.print(5.0 * val * 100 / 1024); //please see note at bottom regarding this formula.
+Serial.println(" Degrees(Celsius)");
+}
+delay(500); //Wait half a second, then do it again. (This allows the line to settle between reads.
+Not really required, but it does remove a bit of jitter
+}
+//----End Code (copy to here)----
+
+#This code may also only be compatible with Arduino
+
+Resources: 
+https://www.auselectronicsdirect.com.au/assets/files/TA0010%20Arduino%20Uno%20Projects.pdf
