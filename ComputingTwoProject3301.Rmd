@@ -71,7 +71,9 @@ resources
 
 Saydi's Section
 
-Goal: I want to gather temperature data using a temperature sensor from the ELEGOO Electronics Fun Kit. I'm still figuring out how often I want it to take a reading. 
+Goal: I want to gather temperature data using a temperature sensor from the ELEGOO Electronics Fun Kit.  
+
+//Place the temperature sensor's three legs through F7 - F9 on a breadboard with the //writing facing towards you. Place one end of a jumper wire in the 5 volt (5V) pin on //the Arduino board, and loop the other end through the 1st hole in the positive power //rail of the breadboard and out again anywhere along the power rail. Place another //jumper wire on the positive power rail to G7 on the breadboard to connect it to the //left leg (anode) of the temperature sensor. Next, place one end of a jumper wire in //the ground (GND) pin on the Arduino board and loop the other end through the negative //power rail of the breadboard and out again anywhere along the negative power rail. //Place another jumper wire on the negative power rail to G9 on the breadboard to //connect it to the right leg (cathode) of the sensor. Lastly, connect a jumper wire //from the A0 pin on the Arduino board to G8 of the breadboard to connect it to the //output leg of the sensor 
 
 
 //----Begin Code (copy from here)----
