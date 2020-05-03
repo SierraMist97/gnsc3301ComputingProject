@@ -89,19 +89,12 @@ Serial.println("Serial connection established..\nTemperature logging started!");
 }
 void loop() {
  // put your main code here, to run repeatedly:
-oldVal = val; //Store the last value in the variable
-val = analogRead(varPin); //Store the new value in its variable
-if (oldVal != val) //If the temperature has changed, tell us the new temp
-{
-Serial.print("Temp: ");
-Serial.print(5.0 * val * 100 / 1024); //please see note at bottom regarding this formula.
-Serial.println(" Degrees(Celsius)");
-}
-delay(500); //Wait half a second, then do it again. (This allows the line to settle between reads.
-Not really required, but it does remove a bit of jitter
-}
 insertname = millis ();
-delay(30000);
+val = analogRead(varPin); //Store the new value in its variable
+Serial.print("Temp: ");
+Serial.print(5.0 * val * 100 / 1024); 
+Serial.println(" Degrees(Celsius)");
+delay(30000); //Wait thirty seconds, then do it again. 
 //----End Code (copy to here)----
 
 #This code may also only be compatible with Arduino
