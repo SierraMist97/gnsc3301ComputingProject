@@ -81,6 +81,7 @@ Goal: I want to gather temperature data using a temperature sensor from the ELEG
 int varPin = A0; //A0 is the analog in pin
 int val = 0; //This will store the current value from the sensor
 int oldVal = 0; //This will store the last value from the sensor to compare.
+unsigned long insertname = 0
 void setup() {
  // put your setup code here, to run once:
 Serial.begin(9600);
@@ -99,6 +100,8 @@ Serial.println(" Degrees(Celsius)");
 delay(500); //Wait half a second, then do it again. (This allows the line to settle between reads.
 Not really required, but it does remove a bit of jitter
 }
+insertname = millis ();
+delay(30000);
 //----End Code (copy to here)----
 
 #This code may also only be compatible with Arduino
