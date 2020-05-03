@@ -8,7 +8,7 @@ output: html_document
 
 
 
-Abi's Section 
+Abi's Section
 
 My goal is to use a light sensor from the Beginner Kit for Arduino to record light and the time that elapses when there is light versus no light. This was to be used in a greenhuose to measure the amount of light in a day to compare with heat to see if tehre was a correlation with plant growth. However, the code is all I am able to work with in the current COVID-19 quarantine. The Arduino code is shown in the following chunk. 
 
@@ -67,3 +67,44 @@ rownames(resources) <- c("Photoresistor Code:","More on Photoresistors:","Timing
 resources <- as.table(resources)
 resources
 ```
+=======
+resources <- matrix(c("https://www.elegoo.com/download/","https://startingelectronics.org/tutorials/arduino/modules/photo-resistor/","https://www.r-bloggers.com/timing-in-r/","https://www.cyclismo.org/tutorial/R/tables.html"),ncol=1,byrow=TRUE)
+colnames(resources) <- c("Source")
+rownames(resources) <- c("Photoresistor Code:","More on Photoresistors:","Timing Coding:","Table Code:")
+resources <- as.table(resources)
+resources
+```
+
+Saydi's Section
+
+Goal: I want to gather temperature data using a temperature sensor from the ELEGOO Electronics Fun Kit.  
+
+//Place the temperature sensor's three legs through F7 - F9 on a breadboard with the //writing facing towards you. Place one end of a jumper wire in the 5 volt (5V) pin on //the Arduino board, and loop the other end through the 1st hole in the positive power //rail of the breadboard and out again anywhere along the power rail. Place another //jumper wire on the positive power rail to G7 on the breadboard to connect it to the //left leg (anode) of the temperature sensor. Next, place one end of a jumper wire in //the ground (GND) pin on the Arduino board and loop the other end through the negative //power rail of the breadboard and out again anywhere along the negative power rail. //Place another jumper wire on the negative power rail to G9 on the breadboard to //connect it to the right leg (cathode) of the sensor. Lastly, connect a jumper wire //from the A0 pin on the Arduino board to G8 of the breadboard to connect it to the //output leg of the sensor 
+
+
+//----Begin Code (copy from here)----
+//Variables:
+int varPin = A0; //A0 is the analog in pin
+int val = 0; //This will store the current value from the sensor
+int oldVal = 0; //This will store the last value from the sensor to compare.
+unsigned long insertname = 0
+void setup() {
+ // put your setup code here, to run once:
+Serial.begin(9600);
+Serial.println("Serial connection established..\nTemperature logging started!");
+}
+void loop() {
+ // put your main code here, to run repeatedly:
+insertname = millis ();
+val = analogRead(varPin); //Store the new value in its variable
+Serial.print("Temp: ");
+Serial.print(5.0 * val * 100 / 1024); 
+Serial.println(" Degrees(Celsius)");
+delay(30000); //Wait thirty seconds, then do it again. 
+//----End Code (copy to here)----
+
+#This code may also only be compatible with Arduino
+
+Resources: 
+https://www.auselectronicsdirect.com.au/assets/files/TA0010%20Arduino%20Uno%20Projects.pdf
+>>>>>>> 10e37021ee3116b362c33eacc270a6035a3d78c1
