@@ -67,13 +67,7 @@ rownames(resources) <- c("Photoresistor Code:","More on Photoresistors:","Timing
 resources <- as.table(resources)
 resources
 ```
-=======
-resources <- matrix(c("https://www.elegoo.com/download/","https://startingelectronics.org/tutorials/arduino/modules/photo-resistor/","https://www.r-bloggers.com/timing-in-r/","https://www.cyclismo.org/tutorial/R/tables.html"),ncol=1,byrow=TRUE)
-colnames(resources) <- c("Source")
-rownames(resources) <- c("Photoresistor Code:","More on Photoresistors:","Timing Coding:","Table Code:")
-resources <- as.table(resources)
-resources
-```
+
 
 Saydi's Section
 
