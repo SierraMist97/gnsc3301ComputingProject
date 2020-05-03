@@ -12,59 +12,56 @@ Abi's Section
 
 My goal is to use a photoresistor (from the Elegoo Electronics Fun Kit) to record light and the time that elapses when there is light versus no light. This was to be used in a greenhuose to measure the amount of light in a day to compare with heat to see if tehre was a correlation with plant growth. However, the code is all I am able to work with in the current COVID-19 quarantine. 
 
-```{r}
-#photoresistor code from www.elegoo.com 
-int lightPin = 0;
-int latchPin = 11;
-int clockPin = 9;
-int dataPin = 12;
-
-int leds = 0;
-
-void setup() 
-{ 
-  pinMode(latchPin, OUTPUT);
-  pinMode(dataPin, OUTPUT);  
-  pinMode(clockPin, OUTPUT);
+```{Uno}
+#light sensor code that runs on an Arduino
+#this code does not run on Rstudio, but it runs on an Arduino Uno system
+// /light sensor with LED to show when the change is registered
+int LED = 13; //define LED digital pin 13
+int val = 0; //define the voltage value of photo diode in digital pin 0
+unsigned long timeLOW = 0; //will store last time LED was updated
+void setup(){
+ pinMode(LED,OUTPUT); // Configure LED as output mode
+ Serial.begin(9600); //Configure baud rate 9600
 }
-void updateShiftRegister()
-{
-   digitalWrite(latchPin, LOW);
-   shiftOut(dataPin, clockPin, LSBFIRST, leds);
-   digitalWrite(latchPin, HIGH);
+void loop(){
+ val = analogRead(0); // Read voltage value ranging from 0 -1023
+ Serial.println(val); // read voltage value from serial monitor
+ if(val<1000){ // If lower than 1000, turn off LED
+ digitalWrite(LED,LOW);
+ }else{ // Otherwise turn on LED
+ digitalWrite(LED,HIGH);
 }
-void loop() 
-{
-  int reading  = analogRead(lightPin);
-  int numLEDSLit = reading / 57;  //1023 / 9 / 2
-  if (numLEDSLit > 8) numLEDSLit = 8;
-  leds = 0;   // no LEDs lit to start
-  for (int i = 0; i < numLEDSLit; i++)
-  {
-    leds = leds + (1 << i);  // sets the i'th bit
-  }
-  updateShiftRegister();
+ delay(10); // delay for 10ms;
+ if (val<1000 == true){   //record time when daylight presence is detected
+ timeLOW = millis();
+ Serial.println("Day");
+ delay (30000);
+} else{
+ Serial.println("Night");
+ delay (30000);
 }
-
-#this code is in the works and needs to be tested with the Elegoo Photoresistor before alterations. It may only be compatible with a Raspberry Pi or Arduino set up.
-#I need to test and perform more research before this code will be satisfactory.
+ }
+#This gives a set of data of whether it is night or day with a timestamp. An interval may be set under delay to tell the system when to check the amount of light. In this example we have it every 30000 ms, or every 30 seconds. 
 ```
 
-Preliminary Timing Code for Photoresistor
+Raw Data from Test Run
 ```{r}
-start_time = Sys.time()
-#NEED TO DEVELOP 'dark' INTO PHOTORESISTOR CODE
-Sys.sleep(dark=TRUE)
-end_time = Sys.time()
+#20 minute run while every 30 seconds data was collected. Light was switched every minute and a half to show it can read both light and dark. An LED would turn on in the dark room. 
+
+DaylightDetection <-matrix(c("14:38:52.285","954","Day","14:39:22.320","961","Day","14:39:52.359","957","Day","14:40:22.380","1020","Night","14:40:52.443","1020","Night","14:41:22.461","1019","Night","14:41:52.501","954","Day","14:42:22.541","957","Day","14:42:52.548","946","Day","14:43:22.586","1020","Night","14:43:52.647","1020","Night","14:44:22.660","1020","Night","14:44:52.701","965","Day","14:45:22.742","961","Day","14:45:52.749","963","Day","14:46:22.785","1019","Night","14:46:52.817","1020","Night","14:47:22.856","1020","Night","14:47:52.891","982","Day","14:48:22.940","985","Day","14:48:52.958","959","Day","14:49:23.016","1020","Night","14:49:53.045","1020","Night","14:50:23.071","1020","Night","14:50:53.113","1012","Night","14:51:23.152","989","Day","14:51:53.172","954","Day","14:52:23.205","956","Day","14:52:53.246","1020","Night","14:53:23.249","1019","Night","14:53:53.286","1020","Night","14:54:23.337","983","Day","14:54:53.368","941","Day","14:55:23.393","941","Day","14:55:53.446","1020","Night","14:56:23.470","1020","Night","14:56:53.518","1020","Night","14:57:23.545","966","Day","14:57:53.585","960","Day","14:58:23.606","943","Day"),ncol=3,byrow=TRUE)
+colnames(DaylightDetection) <- c("Time","Voltage Value","Indicates Dark or Light")
+DaylightDetection <- as.table(DaylightDetection)
+DaylightDetection
 ```
+This data would be what is output by the program.
 
 Abi's Resources
 ```{r}
 #resources
 
-resources <- matrix(c("https://www.elegoo.com/download/","https://startingelectronics.org/tutorials/arduino/modules/photo-resistor/","https://www.r-bloggers.com/timing-in-r/","https://www.cyclismo.org/tutorial/R/tables.html","TA0010 Arduino Uno Projects.pdf"),ncol=1,byrow=TRUE)
+resources <- matrix(c("https://www.elegoo.com/download/","https://startingelectronics.org/tutorials/arduino/modules/photo-resistor/","https://www.r-bloggers.com/timing-in-r/","https://www.cyclismo.org/tutorial/R/tables.html","TA0010 Arduino Uno Projects.pdf","https://www.youtube.com/watch?v=AuiWwJZQEec","file:///Users/Abi/Downloads/Beginner%20Kit%20for%20Arduino%20Tutorial.pdf","https://www.arduino.cc/reference/en/language/structure/control-structure/if/","https://www.arduino.cc/en/Tutorial/BlinkWithoutDelay","https://www.norwegiancreations.com/2017/09/arduino-tutorial-using-millis-instead-of-delay/","https://forum.arduino.cc/index.php?topic=98735.0","https://forum.arduino.cc/index.php?topic=323164.0"),ncol=1,byrow=TRUE)
 colnames(resources) <- c("Source")
-rownames(resources) <- c("Photoresistor Code:","More on Photoresistors:","Timing Coding:","Table Code:","Arduino Resource:")
+rownames(resources) <- c("Photoresistor Code:","More on Photoresistors:","Timing Coding:","Table Code:","Arduino Resource:","Arduino Stop Code Tutorial","DFrobot Code Book Resource", "Arduino IF statements","Blink Without Delay for TIME","More Help on Timing Using Millis Fxn","Time Elapsed Code","More on Finding Timestamp")
 resources <- as.table(resources)
 resources
 ```
