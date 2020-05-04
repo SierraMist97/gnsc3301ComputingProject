@@ -10,7 +10,7 @@ output: html_document
 
 Abi's Section
 
-My goal is to use a light sensor from the Beginner Kit for Arduino to record light and the time that elapses when there is light versus no light. This was to be used in a greenhuose to measure the amount of light in a day to compare with temperature to see if there is a correlation with plant growth. However, the code is all I am able to work with in the current COVID-19 quarantine. The Arduino code is shown in the following chunk. 
+My goal is to use a light sensor from the Beginner Kit for Arduino to record light and the time that elapses when there is light versus no light. This was to be used in a greenhouse to measure the amount of light in a day to compare with temperature to see if there is a correlation with plant growth. However, the code is all I am able to work with in the current COVID-19 quarantine. The Arduino code is shown in the following chunk. 
 
 The set up for the Arduino is seen on page 82 in the linked PDF:https://github.com/DFRobot/Beginner-Kit-for-Arduino/raw/master/Beginner%20Kit%20for%20Arduino%20Tutorial.pdf. A picture of the physical setup will be in the recorded video. The base code is from the same document, although tweaks have been made to record time and set a delay between reading instead of a constant stream of data. This will allow for readings to be taken at set times per day. The time set is placed in milliseconds. 
 
