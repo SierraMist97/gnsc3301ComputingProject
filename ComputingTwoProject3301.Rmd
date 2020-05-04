@@ -10,9 +10,9 @@ output: html_document
 
 Abi's Section
 
-My goal is to use a light sensor from the Beginner Kit for Arduino to record light and the time that elapses when there is light versus no light. This was to be used in a greenhuose to measure the amount of light in a day to compare with heat to see if tehre was a correlation with plant growth. However, the code is all I am able to work with in the current COVID-19 quarantine. The Arduino code is shown in the following chunk. 
+My goal is to use a light sensor from the Beginner Kit for Arduino to record light and the time that elapses when there is light versus no light. This was to be used in a greenhuose to measure the amount of light in a day to compare with temperature to see if there is a correlation with plant growth. However, the code is all I am able to work with in the current COVID-19 quarantine. The Arduino code is shown in the following chunk. 
 
-The set up for the Arduino is seen on page 82 in the linked PDF:https://github.com/DFRobot/Beginner-Kit-for-Arduino/raw/master/Beginner%20Kit%20for%20Arduino%20Tutorial.pdf. A picture of the setup will be in the recorded video. The base code is from the same document, although tweaks have been made to record time and set a delay between reading instead of a constant stream of data. This will allow for readings to be taken at set times per day. The time set is placed in milliseconds. 
+The set up for the Arduino is seen on page 82 in the linked PDF:https://github.com/DFRobot/Beginner-Kit-for-Arduino/raw/master/Beginner%20Kit%20for%20Arduino%20Tutorial.pdf. A picture of the physical setup will be in the recorded video. The base code is from the same document, although tweaks have been made to record time and set a delay between reading instead of a constant stream of data. This will allow for readings to be taken at set times per day. The time set is placed in milliseconds. 
 
 ```{Uno}
 #light sensor code that runs on an Arduino
@@ -46,9 +46,9 @@ void loop(){
 #This gives a set of data of whether it is night or day with a timestamp. An interval may be set under delay to tell the system when to check the amount of light. In this example we have it every 30000 ms, or every 30 seconds. 
 ```
 
-Raw Data from Test Run
+Data from Test Run
 ```{r}
-#20 minute run while every 30 seconds data was collected. Light was switched every minute and a half to show it can read both light and dark. An LED would turn on in the dark room. 
+#20 minute run where data was collected every 30 seconds. Light was switched every minute and a half to show it can read both light and dark. An LED would turn on in the dark room. 
 
 DaylightDetection <-matrix(c("14:38:52.285","954","Day","14:39:22.320","961","Day","14:39:52.359","957","Day","14:40:22.380","1020","Night","14:40:52.443","1020","Night","14:41:22.461","1019","Night","14:41:52.501","954","Day","14:42:22.541","957","Day","14:42:52.548","946","Day","14:43:22.586","1020","Night","14:43:52.647","1020","Night","14:44:22.660","1020","Night","14:44:52.701","965","Day","14:45:22.742","961","Day","14:45:52.749","963","Day","14:46:22.785","1019","Night","14:46:52.817","1020","Night","14:47:22.856","1020","Night","14:47:52.891","982","Day","14:48:22.940","985","Day","14:48:52.958","959","Day","14:49:23.016","1020","Night","14:49:53.045","1020","Night","14:50:23.071","1020","Night","14:50:53.113","1012","Night","14:51:23.152","989","Day","14:51:53.172","954","Day","14:52:23.205","956","Day","14:52:53.246","1020","Night","14:53:23.249","1019","Night","14:53:53.286","1020","Night","14:54:23.337","983","Day","14:54:53.368","941","Day","14:55:23.393","941","Day","14:55:53.446","1020","Night","14:56:23.470","1020","Night","14:56:53.518","1020","Night","14:57:23.545","966","Day","14:57:53.585","960","Day","14:58:23.606","943","Day"),ncol=3,byrow=TRUE)
 colnames(DaylightDetection) <- c("Time","Voltage Value","Indicates Dark or Light")
