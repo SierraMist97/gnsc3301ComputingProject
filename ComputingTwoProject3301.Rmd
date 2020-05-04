@@ -71,9 +71,11 @@ resources
 
 Saydi's Section
 
-Goal: I want to gather temperature data using a temperature sensor from the ELEGOO Electronics Fun Kit.  
+Goal: I want to gather temperature data using an LM35 Temperature Sensor and an Arduino Uno.   
 
-//Place the temperature sensor's three legs through F7 - F9 on a breadboard with the //writing facing towards you. Place one end of a jumper wire in the 5 volt (5V) pin on //the Arduino board, and loop the other end through the 1st hole in the positive power //rail of the breadboard and out again anywhere along the power rail. Place another //jumper wire on the positive power rail to G7 on the breadboard to connect it to the //left leg (anode) of the temperature sensor. Next, place one end of a jumper wire in //the ground (GND) pin on the Arduino board and loop the other end through the negative //power rail of the breadboard and out again anywhere along the negative power rail. //Place another jumper wire on the negative power rail to G9 on the breadboard to //connect it to the right leg (cathode) of the sensor. Lastly, connect a jumper wire //from the A0 pin on the Arduino board to G8 of the breadboard to connect it to the //output leg of the sensor 
+//Setting up the sensor. Place the temperature sensor's three legs through F7 - F9 on a breadboard with the writing facing towards you. Place one end of a jumper wire in the 5 volt (5V) pin on the Arduino board, and loop the other end through the 1st hole in the positive power rail of the breadboard and out again anywhere along the power rail. Place another jumper wire on the positive power rail to G7 on the breadboard to connect it to the left leg (anode) of the temperature sensor. Next, place one end of a jumper wire in the ground (GND) pin on the Arduino board and loop the other end through the negative power rail of the breadboard and out again anywhere along the negative power rail. Place another jumper wire on the negative power rail to G9 on the breadboard to connect it to the right leg (cathode) of the sensor. Lastly, connect a jumper wire from the A0 pin on the Arduino board to G8 of the breadboard to connect it to the output leg of the sensor 
+
+//The schematic can also be found on page 67 of https://github.com/DFRobot/Beginner-Kit-for-Arduino/raw/master/Beginner%20Kit%20for%20Arduino%20Tutorial.pdf. This schematic is for a temperature alarm, but the alarm can be left out or replaced with an LED. 
 
 
 //----Begin Code (copy from here)----
@@ -81,7 +83,6 @@ Goal: I want to gather temperature data using a temperature sensor from the ELEG
 int varPin = A0; //A0 is the analog in pin
 int val = 0; //This will store the current value from the sensor
 int oldVal = 0; //This will store the last value from the sensor to compare.
-unsigned long insertname = 0
 void setup() {
  // put your setup code here, to run once:
 Serial.begin(9600);
@@ -89,7 +90,6 @@ Serial.println("Serial connection established..\nTemperature logging started!");
 }
 void loop() {
  // put your main code here, to run repeatedly:
-insertname = millis ();
 val = analogRead(varPin); //Store the new value in its variable
 Serial.print("Temp: ");
 Serial.print(5.0 * val * 100 / 1024); 
@@ -97,7 +97,18 @@ Serial.println(" Degrees(Celsius)");
 delay(30000); //Wait thirty seconds, then do it again. 
 //----End Code (copy to here)----
 
-#This code may also only be compatible with Arduino
+#This is Arduino code
+
+
+20 minute test run:
+//I used the timestamps that my Arduino program gives me and we just ran the code for 20 minutes; it collected the temperature every thirty seconds. 
+```{r}
+TemperatureReadings<-matrix(c("17:41:27.481","21.48","17:41:57.461","21.00","17:42:27.476","21.48","17:42:57.498","21.48","17:43:27.537","21.48", "17:43:57.567","21.00","17:44:27.593","21.48","17:44:57.597","21.48","17:45:27.643","21.48","17:45:57.669","21.48","17:46:27.683","21.48","17:46:57.716","21.48","17:47:27.730","21.48","17:47:57.734","21.48","17:48:27.783","21.48","17:48:57.807","21.48","17:49:27.812","21.48","17:49:57.831","21.97","17:50:27.876","21.97","17:50:57.875","21.97","17:51:27.898","21.97","17:51:57.941","21.48","17:52:27.956","21.97","17:52:57.990","21.97","17:53:27.989","21.48","17:53:58.038","21.48","17:54:28.062","21.48","17:54:58.074","21.48","17:55:28.113","21.48","17:55:58.142","21.48","17:56:28.156","21.48","17:56:58.172","21.48","17:57:28.198","21.48","17:57:58.225","21.48","17:58:28.229","21.48","17:58:58.287","21.48","17:59:28.299","21.48","17:59:58.319","21.48","18:00:28.329","21.48","18:00:58.359","21.48", "18:01:28.390", "21.48"),ncol=2,byrow=TRUE)
+colnames(TemperatureReadings) <- c("Time","Temperature in Celsius")
+TemperatureReadings <- as.table(TemperatureReadings)
+TemperatureReadings
+```
+
 
 Resources: 
 https://www.auselectronicsdirect.com.au/assets/files/TA0010%20Arduino%20Uno%20Projects.pdf
