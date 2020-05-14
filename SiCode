@@ -1,0 +1,17 @@
+# Sierra's Part -----------------------------------------------------------
+```{r}
+#Vectors with data collected from each sensor
+reading=c(1:40)
+voltage=c(954,961,957,1020,1020,1019,954,957,946,1020,1020,1020,965,961,963,1019,1020,1020,982,985,959,1020,1020,1020,1012,989,954,956,1020,1019,1020,983,941,941,1020,1020,1020,966,960,943)
+temperature=c(21.48,21.00,21.48,21.48,21.48,21.00,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.97,21.97,21.97,21.97,21.48,21.97,21.97,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48,21.48)
+#Scatter Plot showing the values for both readings over time
+plot(reading, voltage, main="Light Readings Over Time", xlab="Reading Number", ylab="Voltage Measured")
+plot(reading, temperature, main="Temperature Readings over Time", xlab="Reading Number", ylab="Temperature Measured")
+#For the sake of demonstration we will randomly generate values for the observed difference in growth
+lightheight <- runif(40, min = 0, max=2)
+tempheight <- runif(40, min=0, max=2)
+#Plant height would theoretically be measured and the differences in growth per measurement would be recorded and then plot against the values for each variable respectively
+plot(lightheight,voltage, main="Height Growth and Voltage Correlation", xlab="Height Difference", ylab="Voltage Measured")
+plot(tempheight,temperature, main="Height Growth and Temperature Correlation", xlab="Height Difference", ylab="Temperature Measured")
+#T-test between the groups to determine if one variable affected growth or if the measured heights are statistically the same
+t.test(lightheight,tempheight)
